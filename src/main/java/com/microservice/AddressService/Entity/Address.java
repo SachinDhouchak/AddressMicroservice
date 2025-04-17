@@ -7,11 +7,25 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedStoredProcedureQueries(
+        @NamedStoredProcedureQuery(
+                name = "AddressDataByProcedure",
+                procedureName = "getAddress",
+                parameters = {
+                        @StoredProcedureParameter(name = "addressId", mode = ParameterMode.IN, type = Long.class),
+                        @StoredProcedureParameter(name = "street1", mode = ParameterMode.OUT, type = String.class),
+                        @StoredProcedureParameter(name = "city1", mode = ParameterMode.OUT, type = String.class),
+                        @StoredProcedureParameter(name = "state1", mode = ParameterMode.OUT, type = String.class),
+                        @StoredProcedureParameter(name = "zipcode1", mode = ParameterMode.OUT, type = String.class)
+                }
+        )
+)
+@Entity
 public class Address {
 
         @Id

@@ -16,6 +16,12 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
+    // procedure api
+    @GetMapping("/addressByProcedure/{addressId}")
+    public ResponseEntity<Address> getAddressByProcedure(@PathVariable Long addressId) {
+        return ResponseEntity.ok(addressService.getAddressByProcedure(addressId));
+    }
+
     // CREATE
     @PostMapping("/addAddress")
     public ResponseEntity<String> addAddress(@RequestBody Address address) {

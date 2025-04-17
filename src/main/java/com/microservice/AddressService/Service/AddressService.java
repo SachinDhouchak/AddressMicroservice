@@ -1,5 +1,6 @@
 package com.microservice.AddressService.Service;
 
+import com.microservice.AddressService.CustomRepo.CustomAddressRepo;
 import com.microservice.AddressService.Entity.Address;
 import com.microservice.AddressService.Repository.AddressRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,13 @@ public class AddressService {
 
     @Autowired
     AddressRepo addressRepo;
+
+    @Autowired
+    CustomAddressRepo customAddressRepo;
+
+    public Address getAddressByProcedure(Long addressId) {
+        return customAddressRepo.getAddressByProcedure(addressId);
+    }
 
     public Address saveAddress(Address address) {
         return addressRepo.save(address);
